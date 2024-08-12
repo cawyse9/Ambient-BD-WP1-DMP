@@ -1,7 +1,14 @@
-These are copies of the questionnaires used in Ambient-BD:  
+####  This folder contains:
 
-* Morning Eveningness Questionnaire 
-* Concensus Sleep Diary  
-* Insomnia Severity Index
-* Demography Questionnaire
-* Stopbang Questionnaire
+1. Questionnaires used in Ambient-BD:  
+
+    * Morning Eveningness Questionnaire 
+    * Concensus Sleep Diary  
+    * Insomnia Severity Index
+    * Demography Questionnaire
+    * Stopbang Questionnaire
+
+  <br>
+  <br>  
+
+  2. [Details of coding of categorical data](\questionnaire_coding)
