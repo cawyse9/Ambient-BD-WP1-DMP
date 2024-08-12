@@ -1,8 +1,7 @@
 # Ambient and passive collection of sleep and circadian rhythm data in bipolar disorder to understand symptom trajectories and clinical outcomes (AMBIENT-BD)
 
-![](https://uoe.sharepoint.com/:u:/r/sites/Ambient-BD/Shared%20Documents/Workstream%201_Assessing%20data%20collection%20methods/Online_surveys_ac/Questionnaire_header.svg?csf=1&web=1&e=XvfiU4)
-
-
+<img src="./images/MU_WT_ABD.svg">
+![Alt text](images/MU_WT_ABD.svg)
 ## Work Package 1 - Acceptability, feasibility and validity of novel ambient and passive data collection methods for sleep, circadian rhythmicity and light exposure
 <br>
 #### Abstract
