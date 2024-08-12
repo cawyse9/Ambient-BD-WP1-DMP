@@ -33,15 +33,15 @@ See www.ambientbd.com for details of the entire Ambient-BD research team
 
 ## Methodological Information  
 
-[### Questionnaires]   
+### [Questionnaires](/Questionnaires)   
 
-1. Morning Eveningness Questionnaire [link to folder]
+1. Morning Eveningness Questionnaire 
 2. Concensus Sleep Diary
 4. Insomnia Severity Index
-5. Demography [link to folder]
+5. Demography 
 6. Stopbang Questionnaire
 
-Questionnaire data are collected online using onlinesurveys.ac.uk (link) and downloaded as coded csv files.  The coding translations are here [  ]
+Questionnaire data are collected online using onlinesurveys.ac.uk ([link](https://www.onlinesurveys.ac.uk/)) and downloaded as coded csv files.  The coding translations are here [  ]
 <br>  
 
 ### Radar Sensing  
