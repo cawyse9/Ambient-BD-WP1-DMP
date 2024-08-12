@@ -41,11 +41,11 @@ See www.ambientbd.com for details of the entire Ambient-BD research team
 5. Demography 
 6. Stopbang Questionnaire
 
-Questionnaire data are collected online using onlinesurveys.ac.uk ([link](https://www.onlinesurveys.ac.uk/)) and downloaded as coded csv files.  The coding translations are here [  ]
+Questionnaire data are collected online using onlinesurveys.ac.uk ([link](https://www.onlinesurveys.ac.uk/)) and downloaded as coded csv files.  The coding translations are [here](Questionnaires/questionaire_coding.xlsx)   
 <br>  
 
 ### Radar Sensing  
-A radar sensing unit (Somnofy, VitalThings, Norway) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data)  
+A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data)  
 <br>  
 
 ### Accelerometry  
