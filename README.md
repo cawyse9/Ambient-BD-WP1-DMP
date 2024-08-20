@@ -7,29 +7,12 @@
 <br>
 <br>  
 
-## Work Package 1 - Acceptability, feasibility and validity of novel ambient and passive data collection methods for sleep, circadian rhythmicity and light exposure  
+##  Acceptability, feasibility and validity of novel ambient and passive data collection methods for sleep, circadian rhythmicity and light exposure  
 
 Bipolar disorder is defined by extreme variability in mood, activity, sleep and circadian timing recurring over weeks and months. To date, studies of sleep/circadian rhythms in bipolar disorder
 have been cross-sectional and based on only 1-2 weeks of monitoring: we urgently need new approaches that can assess longer-term individual-level changes in sleep, activity and mood, to
 better understand symptom trajectories and mechanisms of relapse. In Ambient-BD, we will optimize innovative ambient and passive data collection methods over long time periods and test their feasibility and
 performance against gold standards. 
-
-#### Contributors at Maynooth University
-* Dr Lorna Lopez  
-* Professor Andrew Coogan  
-* Dr Cathy Wyse  
-* Sean Farrell  
-* Christiane O'Brien  
-See www.ambientbd.com for details of the entire Ambient-BD research team  
-
-#### Start date  
-2024-06-01  
-
-#### Finish date  
-2026-06-01  
-<br>  
-
-<br>  
 
 ## Methodological Information  
 
