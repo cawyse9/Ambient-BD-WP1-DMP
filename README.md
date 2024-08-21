@@ -24,15 +24,15 @@ performance against gold standards.
 5. Demography 
 6. Stopbang Questionnaire
 
-Questionnaire data are collected online using onlinesurveys.ac.uk ([link](https://www.onlinesurveys.ac.uk/)) and downloaded as coded csv files.  The coding translations are [here](/Questionnaires/questionaire_coding.xlsx)   
+Questionnaire data are collected online using ([onlinesurveys.ac.uk](https://www.onlinesurveys.ac.uk/)) and downloaded as coded csv files.  The coding translations are [here](/Questionnaires/questionaire_coding.xlsx)   
 <br>  
 
 ### Radar Sensing  
-A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data)  
+A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data).  Code for downloading data from VitalThings API is [here]/Questionnaires/questionaire_coding.xlsx) 
 <br>  
 
 ### Accelerometry  
-Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [link to datasheet]) over a three month duration.  The Axivity devices will be programmed to collect acceleration data from X, Y and Z axis at 12.5 Hz with a sensitivity of 8g [link to readme].  Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package GGIR (link) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }  
+Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [link to datasheet]) over a three month duration.  The Axivity devices will be programmed to collect acceleration data from X, Y and Z axis at 12.5 Hz with a sensitivity of 8g [link to readme].  Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package GGIR (link) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }.  Raw time series data for each participant will be saved in a   
 <br>  
 
 ### Polysomnography  
@@ -46,12 +46,12 @@ Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [link
 <br>  
 
 ### File Formats and Size  
-Questionnaire raw data are stored in CSV format, somnofy data as json files and accelerometry data in .cwa format.  All other data are stored in csv format.  Code and metadata wil be stored in .txt files. The entire project dataset will take less than 100GB storage space.  W3C/ISO 8601 date standard, which specifies the international standard notation of YYYY-MM-DD or YYYY-MM-DDThh:mm:ss will be used in all data collection and processing.  Data will be stored on dedicated workspace on an MU server mapped as Z: and on FamilyGenomics sharepoint ()  
+Questionnaire raw data are stored in CSV format, somnofy raw data as json files and accelerometry raw data in .cwa format.  All other data are stored in csv format.  Code and metadata wil be stored in .txt files. The entire project dataset will take less than 100GB storage space.  W3C/ISO 8601 date standard, which specifies the international standard notation of YYYY-MM-DD or YYYY-MM-DDThh:mm:ss will be used in all data collection and processing.  Data will be stored on dedicated workspace on an MU server mapped as Z: and on FamilyGenomics sharepoint ()  
 <br>  
 
 ### Participant Identification  
 
-Participants will be identified by a sequence of 4 random numbers that uniquely identifies preceeded by ABD to denote the project (primary identification key).  Random numbers were allocated using the RAND() function in MS Excel, with no replacement and are stored at this location [  ].  These data will be called "studyID" in all datasets and used as the primary key in a relational database stored in MS Access.  
+Participants will be identified by a sequence of 4 random numbers that uniquely identifies preceeded by ABD to denote the project (primary identification key).  Random numbers were allocated using the RAND() function in MS Excel, with no replacement.  These data will be called "studyID" in all datasets and used as the primary key in a relational database stored in MS Access.  
 
 <br>  
 
