@@ -1,6 +1,7 @@
 ####  This folder contains:
 
-1. Questionnaires used in Ambient-BD:  
+
+Questionnaires used in Ambient-BD:  
 
     * Morning Eveningness Questionnaire 
     * Concensus Sleep Diary  
@@ -9,5 +10,5 @@
     * Stopbang Questionnaire
 
   <br>
-  <br>  
-  2. [Details of coding of categorical data](questionnaire_coding.xlsx)
+  
+  [Key to uncode questionnaire data is here](Questionnaires/questionaire_coding.xlsx)   
