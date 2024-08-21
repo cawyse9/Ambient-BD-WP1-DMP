@@ -11,4 +11,4 @@
   <br>
   <br>  
 
-  2. [Details of coding of categorical data](\questionnaire_coding)
+  2. [Details of coding of categorical data](\questionnaire_coding.xlsx)
