@@ -28,7 +28,8 @@ Questionnaire data are collected online using ([onlinesurveys.ac.uk](https://www
 <br>  
 
 ### Radar Sensing  
-A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data).  Code for downloading data from VitalThings API is [here]/Questionnaires/questionaire_coding.xlsx) 
+A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data).  [Code for downloading data from VitalThings API](https://github.com/my-org/my-awesome-repo)
+
 <br>  
 
 ### Accelerometry  
