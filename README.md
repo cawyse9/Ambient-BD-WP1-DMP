@@ -28,7 +28,7 @@ Questionnaire data are collected online using ([onlinesurveys.ac.uk](https://www
 <br>  
 
 ### Radar Sensing  
-A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data).  [Code for downloading data from VitalThings API](https://github.com/my-org/my-awesome-repo)
+A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data).  [Code for downloading data from VitalThings API](https://github.com/chronopsychiatry/ambient-somnofy.git)
 
 <br>  
 
@@ -37,9 +37,12 @@ Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [link
 <br>  
 
 ### Polysomnography  
-
-<br>  
-
+Polysomnography will be performed according to this protocol.  Data will be acquired and analysed using MiniView software (link).  Sleep scoring will be performed independently by trained scorers and the following data downloaded from Miniview:  
+*  Physiological time series (EEG, ECG, EMG, SpO2, airflow, thermistor, abdomimal and chest movement) (edf)
+*  Sleep scores (csv)
+<br>
+These data will be stored at the following locations, Z:\PSG\time_series and Z:\PSG\scores.  Each file will be labelled as psg_study_time_series_ID_date.edf or psg_scores_studyID_date.csv where date takes the format of ddmmyy, and uniquely identifies each indivual PSG recording on each individual.
+   
 ### Dim Light Melatonin Onset  
 <br>
 
@@ -47,7 +50,7 @@ Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [link
 <br>  
 
 ### File Formats and Size  
-Questionnaire raw data are stored in CSV format, somnofy raw data as json files and accelerometry raw data in .cwa format.  All other data are stored in csv format.  Code and metadata wil be stored in .txt files. The entire project dataset will take less than 100GB storage space.  W3C/ISO 8601 date standard, which specifies the international standard notation of YYYY-MM-DD or YYYY-MM-DDThh:mm:ss will be used in all data collection and processing.  Data will be stored on dedicated workspace on an MU server mapped as Z: and on FamilyGenomics sharepoint ()  
+Questionnaire raw data are stored in CSV format, somnofy raw data as json files and accelerometry raw data in .cwa format.  PSG data are stored as edf or csv files.  All other data are stored in csv format.  Code and metadata wil be stored in .txt files. The entire project dataset will take less than 100GB storage space.  W3C/ISO 8601 date standard, which specifies the international standard notation of YYYY-MM-DD or YYYY-MM-DDThh:mm:ss will be used in all data collection and processing.  Data will be stored on dedicated workspace on an MU server mapped as Z: and on FamilyGenomics sharepoint ()  
 <br>  
 
 ### Participant Identification  
