@@ -55,7 +55,7 @@ Use opensource software OpenMovement, UK [OMGUI](https://github.com/digitalinter
 
 
 
-Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package [GGIR](https://github.com/wadpac/GGIR) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }.  Data parameters output from GGIR will be extracted using [VBA scripts] to and access database.  Raw time series data for each participant will be saved in a folder Z:\Axivity\csv_files, and parameters derived by GGIR for each participant will be stored in a table in csv format in this folder Z:\Axivity\results\GGIR_parameters.    
+Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package [GGIR](https://github.com/wadpac/GGIR) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }. Raw time series data for each participant will be saved in a folder Z:\Axivity\csv_files, and parameters derived by GGIR for each participant will be stored in a table in csv format in this folder Z:\Axivity\results\GGIR_parameters.   
 <br>  
 
 ### Polysomnography  
