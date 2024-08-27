@@ -67,11 +67,13 @@ Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry)
 <br>  
 
 ### Polysomnography  
-Polysomnography will be performed according to this protocol.  Data will be acquired and analysed using MiniView software (link).  Sleep scoring will be performed independently by trained scorers and the following data downloaded from Miniview:  
+Polysomnography will be performed according to this protocol.  Data will be acquired and analysed using MiniView software supplied by Lowenstein Medical [datasheet here](datasheets/miniscreen-viewer-sleep-diagnostics-user-manual-en.pdf).  Sleep scoring will be performed independently by trained scorers and the following data downloaded from Miniview:  
 *  Physiological time series (EEG, ECG, EMG, SpO2, airflow, thermistor, abdomimal and chest movement) (edf)
 *  Sleep scores (csv)
+*  Sleep parameters (csv)
+  
 <br>
-These data will be stored at the following locations, Z:\PSG\time_series and Z:\PSG\scores.  Each file will be labelled as psg_study_time_series_ID_date.edf or psg_scores_studyID_date.csv where date takes the format of ddmmyy, and uniquely identifies each indivual PSG recording on each individual.
+These data will be stored at the following locations, Z:\PSG\time_series and Z:\PSG\scores.  Each file will be labelled as psg_study_time_series_ID_date.edf or psg_scores_studyID_date.csv where date takes the format of ddmmyy, and uniquely identifies each indivual PSG recording on each individual.  Each 30 second epoch will be scored as (i) wake, (ii) N1, (iii) N2, (iv) N3, (v) REM and comparsons between scorers or devices made using comparisons described in this R-project.  Sleep parameters derived in Miniview will be extracted  
    
 ### Dim Light Melatonin Onset  
 <br>
