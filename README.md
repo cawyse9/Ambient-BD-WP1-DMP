@@ -33,7 +33,29 @@ A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/pr
 <br>  
 
 ### Accelerometry  
-Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [details](https://axivity.com/product/ax6)) over a three month duration.  The Axivity devices will be programmed to collect acceleration data from X, Y and Z axis at 12.5 Hz with a sensitivity of 8g [link to readme].  Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package GGIR (link) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }.  Raw time series data for each participant will be saved in a   
+Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [details](https://axivity.com/product/ax6)) over a three month duration.  The Axivity devices will be programmed to collect acceleration data from X, Y and Z axis at 12.5 Hz with a sensitivity of 8g [link to readme].  
+####  AX6 Setup  
+
+In OMGUI (https://github.com/digitalinteraction/openmovement/wiki/AX3-GUI), set the following options:  
+```
+[Tools][Options] set [Filename] = acc_{SubjectCode}_{DeviceId}  
+[File][Choose Working Folder] = set to Z:\Accelerometery\cwa_files\  
+
+# To program device – [clear][record]  
+
+#### Recording Settings
+[Sampling] = 12.5Hz
+[Recording Time][Range] = +/- 8g
+[Interval = anticipated wear start time +24h
+[Subject][Code] = “studyID”
+    Untick  [Flash during Recording]
+            [Lower power]
+	    [Unpacked data]
+```
+
+
+
+Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package GGIR (link) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }.  Raw time series data for each participant will be saved in a   
 <br>  
 
 ### Polysomnography  
