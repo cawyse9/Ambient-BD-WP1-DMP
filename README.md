@@ -28,15 +28,15 @@ Questionnaire data are collected online using ([onlinesurveys.ac.uk](https://www
 <br>  
 
 ### Radar Sensing  
-A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data).  [Code for downloading data from VitalThings API](https://github.com/chronopsychiatry/ambient-somnofy.git)
+A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data). The code for downloading data from the VitalThings API is [here](https://github.com/chronopsychiatry/ambient-somnofy.git)
 
 <br>  
 
 ### Accelerometry  
-Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [details](https://axivity.com/product/ax6)) over a three month duration.  The Axivity devices will be programmed to collect acceleration data from X, Y and Z axis at 12.5 Hz with a sensitivity of 8g [link to readme].  
+Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [details](https://axivity.com/product/ax6)) over a three month duration.  The Axivity devices will be programmed to collect acceleration data from X, Y and Z axis at 12.5 Hz with a sensitivity of 8g.  
 ####  AX6 Setup  
 
-In OMGUI (https://github.com/digitalinteraction/openmovement/wiki/AX3-GUI), set the following options:  
+Use opensource software OpenMovement, UK [OMGUI](https://github.com/digitalinteraction/openmovement/wiki/AX3-GUI), to programme the AX6 with the following options:  
 ```
 [Tools][Options] set [Filename] = acc_{SubjectCode}_{DeviceId}  
 [File][Choose Working Folder] = set to Z:\Accelerometery\cwa_files\  
@@ -55,7 +55,7 @@ In OMGUI (https://github.com/digitalinteraction/openmovement/wiki/AX3-GUI), set 
 
 
 
-Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package GGIR (link) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }.  Raw time series data for each participant will be saved in a   
+Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package [GGIR](https://github.com/wadpac/GGIR) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }.  Data parameters output from GGIR will be extracted using [VBA scripts] to and access database.  Raw time series data for each participant will be saved in a folder Z:\Axivity\csv_files, and parameters derived by GGIR for each participant will be stored in a table in csv format in this folder Z:\Axivity\results\GGIR_parameters.    
 <br>  
 
 ### Polysomnography  
