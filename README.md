@@ -33,7 +33,7 @@ A radar sensing unit (Somnofy, VitalThings, Norway https://vitalthings.com/en/pr
 <br>  
 
 ### Accelerometry  
-Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [link to datasheet]) over a three month duration.  The Axivity devices will be programmed to collect acceleration data from X, Y and Z axis at 12.5 Hz with a sensitivity of 8g [link to readme].  Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package GGIR (link) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }.  Raw time series data for each participant will be saved in a   
+Data will be collected using an AX6 wrist worn accelerometer (Axivity, UK; [details](https://axivity.com/product/ax6)) over a three month duration.  The Axivity devices will be programmed to collect acceleration data from X, Y and Z axis at 12.5 Hz with a sensitivity of 8g [link to readme].  Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package GGIR (link) to derive parameters describing sleep and circadian rhythms by running script runGGIR {  }.  Raw time series data for each participant will be saved in a   
 <br>  
 
 ### Polysomnography  
