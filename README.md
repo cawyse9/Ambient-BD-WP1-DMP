@@ -75,7 +75,8 @@ Polysomnography will be performed according to this protocol.  Data will be acqu
 <br>
 These data will be stored at the following locations, Z:\PSG\time_series and Z:\PSG\scores.  Each file will be labelled as psg_study_time_series_ID_date.edf or psg_scores_studyID_date.csv where date takes the format of ddmmyy, and uniquely identifies each indivual PSG recording on each individual.  Each 30 second epoch will be scored as (i) wake, (ii) N1, (iii) N2, (iv) N3, (v) REM and comparsons between scorers or devices made using comparisons described in this R-project.  Sleep parameters derived in Miniview will be extracted  
    
-### Dim Light Melatonin Onset  
+### Dim Light Melatonin Onset (DMLO)  
+The time of DLMO will be measured according to this [protocol](datasheets/DMLO_protocol.md). Time series data describing salivary melatonin concentrations will be stored as csv files for each participant in the following folder, Z:\DMLO\time_series) and derived times of DLMO will be stored in a csv file here, Z:\DMLO\results)
 <br>
 
 ## Data Storage  
@@ -216,8 +217,8 @@ A master database will be created in MS Access that will link to raw data files 
 <br>  
 
 ###  Software  
-All data processing and analysis will be performed in R and MS Access.  Accelerometery, radar and polysomnography sensors will be programmed using software supplied by the manufacturer (Axivity = OMGUI [link], Somnofy = VitalThings (  ) and Sonata (  )).  Data will be backed up to a onedrive location on a weekly basis, and version control of code files will be maintained with github.
+All data processing and analysis will be performed in R and MS Access.  Accelerometery, radar and polysomnography sensors will be programmed using software supplied by the manufacturer (Axivity = OMGUI [link], Somnofy = VitalThings (  ) and MiniView (Lowenstein Medical).  Data will be stored locally on a server and backed up to a onedrive location on a weekly basis.  Version control of code files will be maintained with github.
 <br>  
 
 ### Data Reuse  
-Data will be open access following anonymousiation at the end of the project (June 2026).  No data will be shared outdise the study team prior to that.
+Data will be open access under a Creative Commons (c0) licence following anonymousiation at the end of the project (June 2026).  No data will be shared outdise the study team prior to that.
