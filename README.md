@@ -2,12 +2,10 @@
 	<img src="./images/Questionnaire_header.svg", width=150%>
 </div>  
 
-
-# Ambient and passive collection of sleep and circadian rhythm data in bipolar disorder to understand symptom trajectories and clinical outcomes (AMBIENT-BD)
-<br>
 <br>  
+<br> 
 
-##  Acceptability, feasibility and validity of novel ambient and passive data collection methods for sleep, circadian rhythmicity and light exposure  
+# Ambient-BD Work Package 1 - Data Management Plan
 
 Bipolar disorder is defined by extreme variability in mood, activity, sleep and circadian timing recurring over weeks and months. To date, studies of sleep/circadian rhythms in bipolar disorder
 have been cross-sectional and based on only 1-2 weeks of monitoring: we urgently need new approaches that can assess longer-term individual-level changes in sleep, activity and mood, to
