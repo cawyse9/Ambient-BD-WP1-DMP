@@ -5,30 +5,50 @@ library(stringr)
 #  Notes:
 #      - this is designed for processing single files because of the long duration of the datafiles (3 months)
 #      - paste only one cwa file into the datadir
-
+#      - the date in the filename prevents overwriting, but still watch for this
 #======================================================================================
 #
 # Stage 1 - Set up temporary local folders for input of cwa file and export of results
 #
 #======================================================================================
 
-# set the working directory to the FG sharepoint
-setwd("./Maynooth University/Family Genomics - Documents/General/Research/Ambient BD/Axivity")
+# set the working directory to the UoE sharepoint - raw data and results go to Z
+setwd("C:/Users/Admin/University of Edinburgh/Ambient-BD - Documents/Workstream 1_Assessing data collection methods/2. Data analysis/Axivity Processing")
 
-# processing cwa files
-
-# 1  Download cwa file from axivity into local datadir folder eg ""
+# the cwa download from omgui should result in a folder with studyID name in here Z:\Axivity\cwa_files\ 
+# the steps implemented by this script are:
+# 
+# 1  Check folders to set up processing and transfer to Z:
 # 2  Run GGIR 
-# 3. Check for errors and missing days
-# 4  Transfer cwa file and GGIR output to Z:
+# 3  Check for errors and missing days
+# 4  Transfer cwa file and GGIR sleep and circadian output to Z:
 # 5  Extract time series data (for circadian rhythms analysis) and GGIR parameters that we will use
+# 6  Transfer all results generated from GGIR to Z: for use by other researchers
 
-# Define directories
-datadir <- "./Axivity_Processing/paste_1_cwa_file"   # paste the cwa for analysis here
-outputdir <- "./Axivity_Processing/results"   # Location of GGIR output on local PC - also the source folder for items to move to Z:
-metadatadir <- "./Axivity_Processing/meta"
-datadir <- "Z:/Axivity/cwa_files"
-outputdir <- "C:/practiseAXIVITY"
+#put the studyID here
+studyID <- "abd1228"
+
+# define directory  name and make sure it exists already
+datadir <- paste0("Z:/Axivity/cwa_files/", studyID) #location of raw data file cwa - directly into this folder from omgui
+
+if (!dir.exists(datadir)) {
+  stop("No folder: check that studyID folder was created during the download from Axivity")
+}
+
+if (length(list.files(datadir)) == 0) {
+  stop("No cwa file: check download from Axivity")
+}
+
+outputdir <- paste0(getwd(), "/results")   # Location of GGIR output on local PC - also the source folder for items to export to Z
+
+# Check if the folder exists and is empty, ie data from previous participant is removed
+if (!dir.exists(outputdir)) {
+  stop("Error: no results file in UoE sharepoint folder")
+}
+
+if (length(list.files(outputdir)) > 0) {
+  stop("Delete all data from results folder in UoE Sharepoint folder")
+}
 
 #======================================================================================
 #
@@ -41,10 +61,9 @@ studyname = "AmbientBD"
 f0 = 1  # file number to start
 f1 = 2  # file number to end
 
-
 GGIR(
   mode = mode, # ggir modes to run
-  datadir = datadir,  # location of cwa file
+  datadir = datadir , # location of cwa file
   outputdir = outputdir,  # output to temporary local drive
   metadatadir = outputdir, # output metadata to local drive
   studyname = studyname, 
@@ -118,7 +137,7 @@ GGIR(
   boutdur.lig = c(1,5,10), 
   boutdur.mvpa = c(1,5,10),
   timewindow = c("WW"), # timewindow over which summary statistics are derived. Value can be “MM” (midnight to midnight), “WW” (waking time to waking time), “OO” (sleep onset to sleep onset)
-
+  
   epochvalues2csv = TRUE, # epoch values are exported to a csv file
   
   
@@ -133,7 +152,7 @@ GGIR(
   do.report = c(2,4,5))
 
 
-rm(list=ls(all=TRUE)) # clear environment
+#rm(list=ls(all=TRUE)) # clear environment
 
 
 #======================================================================================
@@ -160,61 +179,43 @@ shell.exec(pdffile)
 
 # Extract studyID from the single cwa file
 cwa_name <- list.files(datadir)[1]  # Get the single file name
-name <- substr(cwa_name, start = 1, stop = 7)  # Extract the study ID (first 7 characters)
+name <- substr(cwa_name, start = 5, stop = 11)  # Extract the study ID (first 7 characters)
 
 # copy the csv file for each participant to csv_files results folder on Z:
-new_filename <- paste0("acc_timeseries_", name, ".RData")
-csv_folder <- file.path(outputdir, "output_cwa/meta/csv_files")
-
-rdata_file <- list.files(csv_folder,  full.names = TRUE) #assuming only one file - need to put check here
-new_file_path <- file.path("Z:/Axivity/results/csv_files", new_filename)
+new_filename <- paste0("acc_timeseries_", name, "_",format(Sys.Date(), "%d%m%Y"), ".RData")
+add_path_to_csv <- paste0("output_",name,"/meta/csv")
+csv_folder <- file.path(outputdir, add_path_to_csv)
+rdata_file <- list.files(csv_folder,  full.names = TRUE) #assuming only one file 
+new_file_path <- file.path("Z:/Axivity/Results/csv_files", new_filename)
 file.copy(rdata_file, new_file_path)
 
 # move the ggir data for each participant to ggir_variables folder on Z:
 new_filename_ggir <- paste0("acc_ggir_", name, ".csv")
-ggir_folder <- file.path(outputdir, "results")
-data_file_ggir <- list.files(ggir_folder, pattern = "part4_summary_sleep_cleaned.csv", full.names = TRUE)
-new_file_path_ggir <- file.path("Z:/Axivity/results/ggir_variables", new_filename_ggir)
+add_path_to_ggir_data <- paste0("output_",name,"/Results")
+ggir_folder <- file.path(outputdir, add_path_to_ggir_data) #define the folder with sleep data and other resutls
+data_file_ggir <- list.files(ggir_folder, pattern = "part4_summary_sleep_cleaned.csv", full.names = TRUE) #get the sleep data we need
+new_file_path_ggir <- file.path("Z:/Axivity/Results/ggir_variables", new_filename_ggir)
 file.copy(data_file_ggir, new_file_path_ggir)
 
 
+
+
 #================================================================================================
 #
-# Stage 5 Transfer cwa file and all generated GGIR data to Z: and delete temporary local files
+# Stage 5 Transfer all generated GGIR data to Z: and delete temporary local files
 #
 #================================================================================================
 
-#"Z:\Axivity\Participant_GGIR_output" - this folder has separate sub-folders for each participant
-
-# Define directories (same as stage 1)
-# datadir    Location of local download of cwa file
-# outputdir  Location of GGIR output on local PC - also the source folder for items to move to Z:
-# studyID already defined as variable "name" from Stage 4 
-
-move_GGIR_results <- "Z:/Axivity/Participants_GGIR_output"  # Path to create GGIR results folder for each participant and move results there
-move_cwa_file <- "Z:/Axivity/cwa_files"    # Path to cwa store in Z:
-  
-# Create the new folder using the study ID
-results_folder_Z <- file.path(move_GGIR_results, name)  #this is the participant folder in z:
-dir.create(results_folder_Z, recursive = TRUE)  # Create the directory without checking if it exists - note this will overwrite existing data - need to put check step here
+# Z:\Axivity\studyID_GGIR_output - this folder collects all GGIR data for future projects
+move_GGIR_results <- "Z:/Axivity/Results/GGIR_output"  # Path to create GGIR results folder for each participant and move results there
 
 # Get the list of files in the Axivity output local folder
 files <- list.files(outputdir, full.names = TRUE)
 
-# Move the results files to the new folder - note this is move, not copy
-file.rename(files, file.path(results_folder_Z, basename(files)))
+# Define the source and destination paths
+source_dir <- files  # dir to move
+destination_dir <- file.path(move_GGIR_results)  # Full path of destination
 
-# move the cwa file
-cwa_folder_Z <- file.path(move_cwa_file)  #this is the participant folder in z:
-cwa_file <- list.files(datadir, pattern = "*.cwa", full.names = TRUE) #assuming there is only one cwa file in the folder
-file.rename(cwa_file, file.path(cwa_folder_Z, basename(cwa_file)))
-
-#  Final outputs of this script
-
-#   Z:/Axivity/cwa_files                all cwa files
-#   Z:/Axivity/Results/csv_files        time series data for all participants in separate files
-#   Z:/Axivity/Results/ggir_variables   GGIR variables needed for Ambient-BD in separate files
-#   Z:/Axivity/Participant_GGIR_output  All GGIR output for all participants in separate folders
-
-
-
+# Copy the entire directory including subdirectories and files
+file.copy(source_dir, destination_dir, recursive = TRUE)
+rm(list=ls(all=TRUE)) # clear environment
