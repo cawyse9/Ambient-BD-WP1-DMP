@@ -53,7 +53,7 @@ Use opensource software OpenMovement, UK [OMGUI](https://github.com/digitalinter
 
 
 
-Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package [GGIR](https://github.com/wadpac/GGIR) to derive parameters describing sleep and circadian rhythms by running R script [runGGIR](  ).  The GGIR configuration parameters applied are [here](datasheets/config_130824.csv).  The final outputs of the runGGIR script are stored in the Z: server:  
+Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry) format and stored on the MU server (Z:\Axivity\cwa_files).  Accelerometry data will be processed using the R-package [GGIR](https://github.com/wadpac/GGIR) to derive parameters describing sleep and circadian rhythms by running R script [runGGIR](scripts/run_ggir290924.R).  The GGIR configuration parameters applied are [here](datasheets/config_130824.csv).  The final outputs of the runGGIR script are stored in the Z: server:  
 
 | Directory | Description |
 |-----------|-------------|
@@ -68,7 +68,9 @@ Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry)
 Polysomnography will be performed according to this protocol.  Data will be acquired and analysed using MiniView software supplied by Lowenstein Medical [datasheet here](datasheets/miniscreen-viewer-sleep-diagnostics-user-manual-en.pdf).  Sleep scoring will be performed independently by trained scorers and the following data downloaded from Miniview:  
 *  Physiological time series (EEG, ECG, EMG, SpO2, airflow, thermistor, abdomimal and chest movement) (edf)
 *  Sleep scores (csv)
-*  Sleep parameters (csv)
+*  Sleep parameters (html)
+
+Sleep parameters according to AASM definitions will be downloaded from Miniviewer as a automatically generated html report; direct export of parameters is not possible.  The parameters and hyponogram are extracted from the report using this [R-script](
   
 <br>
 These data will be stored at the following locations, Z:\PSG\time_series and Z:\PSG\scores.  Each file will be labelled as psg_study_time_series_ID_date.edf or psg_scores_studyID_date.csv where date takes the format of ddmmyy, and uniquely identifies each indivual PSG recording on each individual.  Each 30 second epoch will be scored as (i) wake, (ii) N1, (iii) N2, (iv) N3, (v) REM and comparsons between scorers or devices made using comparisons described in this R-project.  Sleep parameters derived in Miniview will be extracted  
