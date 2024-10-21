@@ -26,7 +26,7 @@ Questionnaire data are collected online using ([onlinesurveys.ac.uk](https://www
 <br>  
 
 ### Radar Sensing  
-A radar sensing unit (Somnofy, [VitalThings](https://vitalthings.com/en/products/somnofy/) will be placed approximately 40cm from the edge of the bed.  Data are acquired to a cloud-based platform continuously.  Data are downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data). The code for downloading data from the VitalThings API is [here](https://github.com/chronopsychiatry/ambient-somnofy.git)
+A radar sensing unit (Somnofy, [VitalThings](https://vitalthings.com/en/products/somnofy/) will be placed at the bedside.  Data are acquired to a cloud-based platform continuously and downloaded to the servers at MU on a weekly basis and stored in individual participant folders (Z:\Somnofy\data). The code for downloading data from the VitalThings API is [here](https://github.com/chronopsychiatry/ambient-somnofy.git)
 
 <br>  
 
@@ -85,11 +85,9 @@ These data will be stored at the following locations, Z:\PSG\time_series and Z:\
 <br>  
    
 ### Dim Light Melatonin Onset (DMLO)  
-The time of DLMO will be measured according to this [protocol](datasheets/DMLO_protocol.md). Time series data describing salivary melatonin concentrations will be stored as csv files for each participant in the following folder, Z:\DMLO\time_series) and derived times of DLMO will be stored in a csv file here, Z:\DMLO\results)
+The time of DLMO will be measured according to this [protocol](protocols/DMLO_protocol.md). Time series data describing salivary melatonin concentrations will be stored as csv files for each participant in the following folder, Z:\DMLO\time_series) and derived times of DLMO will be stored in a csv file here, Z:\DMLO\results)
 <br>
 
-## Data Storage  
-<br>  
 
 ### File Formats and Size  
 Questionnaire raw data are stored in CSV format, somnofy raw data as json files and accelerometry raw data in .cwa format.  PSG data are stored as edf or csv files.  All other data are stored in csv format.  Code and metadata wil be stored in .txt files. The entire project dataset will take less than 100GB storage space.  W3C/ISO 8601 date standard, which specifies the international standard notation of YYYY-MM-DD or YYYY-MM-DDThh:mm:ss will be used in all data collection and processing.  Data will be stored on dedicated workspace on an MU server mapped as Z: and on FamilyGenomics sharepoint ()  
@@ -111,34 +109,22 @@ File names will reflect folder structure and be inform the user of the domain, m
 <br>  
 
 Files will be named as:  
-[domain][instrument][date]  
+[domain][instrument][studyID]  
 
 Date format in this case will be YYMMDD. Domains and their abbreviations are  
 
-* Questionnaires (que)
+* Questionnaires (isi, meq, demo, sb, diary)
 * Radar (rad)
 * Accelerometery (acc)
-* Dim light melatonin onset (DLMO)
-* Polysomnography (PSG)
-
-Instruments and their abbreviations are: 
-* Morning Eveningness Questionnaire (meq)
-* Demography (demo)
-* Insomnia Severity Index (ISI)
-*
-* sleep (slp), circadian rhythms (cr), temperature (temp), light (lit), noise (nse) and physical activity (pa).  The individual variable names are defined in the data dictionnary (link).  
-
-For example, a file containing data on sleep derived from accelerometry data saved on 2024-02-22 would be called:  
-    acc_sleep_240222
-
-Version control is implemented by the 6 digit date in each file name.  Each folder will contain an archive where old versions of data files will be archived.  
+* Dim light melatonin onset (dlmo)
+* Polysomnography (psg)
+ 
+Each folder will contain a folder where old versions of data files will be archived.  
 
 <br>  
 
 ### Folder Naming
-In the top folder of the folder structure, there will be a .txt format file (a ReadMe file) with a description of the structure and data contained and where any changes can be documented.  The folder names will follow the naming convention of the files.  The top folders will be the domain names, Questionnaires, Radar, Accelerometery, Polysomnography, DLMO.  Sub-directory names will be the instruments, Morning Eveningness Questionnaire.  
-
-Each instrument folder will contain a sub-directory for storage of raw data files called (raw), analysis (anal) and code (code)  
+In the top folder of the folder structure, there will be a .txt format file (a ReadMe file) with a description of the structure and data contained and where any changes can be documented.  The folder names will follow the naming convention of the files.  The top folders will be the domain names, Questionnaires, Radar, Accelerometery, Polysomnography, DLMO.  
 
 ```
 Ambient_BD
@@ -229,4 +215,4 @@ All data processing and analysis will be performed in R and MS Access.  Accelero
 <br>  
 
 ### Data Reuse  
-Data will be open access under a Creative Commons (c0) licence following anonymousiation at the end of the project (June 2026).  No data will be shared outdise the study team prior to that.
+Data will be open access under a Creative Commons (c0) licence following anonomysation at the end of the project (June 2026).  No data will be shared outside the study team prior to that.
