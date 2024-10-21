@@ -57,7 +57,7 @@ Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry)
 
 | Directory | Description |
 |-----------|-------------|
-| `Z:/Axivity/cwa_files` | Contains all CWA files |
+| `Z:/Axivity/cwa` | Contains all CWA files |
 | `Z:/Axivity/Results/csv_files` | Contains time series data for all participants in separate files |
 | `Z:/Axivity/Results/ggir_variables` | Contains GGIR variables needed for Ambient-BD in separate files |
 | `Z:/Axivity/Participant_GGIR_output` | Contains all GGIR output for all participants in separate folders |
