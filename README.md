@@ -65,15 +65,24 @@ Data will be downloaded from the device in *.cwa (Continuous Wave Accelerometry)
 <br>  
 
 ### Polysomnography  
-Polysomnography will be performed according to this protocol.  Data will be acquired and analysed using MiniView software supplied by Lowenstein Medical [datasheet here](datasheets/miniscreen-viewer-sleep-diagnostics-user-manual-en.pdf).  Sleep scoring will be performed independently by trained scorers and the following data downloaded from Miniview:  
+Polysomnography will be performed according to this [protocol](protocols/PSG_protocol_161024.docx).  Data will be acquired and analysed using MiniView software supplied by Lowenstein Medical [datasheet here](datasheets/miniscreen-viewer-sleep-diagnostics-user-manual-en.pdf).  Sleep scoring will be performed independently by trained scorers and the following data downloaded from Miniview:  
 *  Physiological time series (EEG, ECG, EMG, SpO2, airflow, thermistor, abdomimal and chest movement) (edf)
 *  Sleep scores (csv)
-*  Sleep parameters (html)
+*  Sleep report (html)
 
 Sleep parameters according to AASM definitions will be downloaded from Miniviewer as a automatically generated html report; direct export of parameters is not possible.  The parameters and hyponogram are extracted from the report using this [R-script](
   
 <br>
 These data will be stored at the following locations, Z:\PSG\time_series and Z:\PSG\scores.  Each file will be labelled as psg_study_time_series_ID_date.edf or psg_scores_studyID_date.csv where date takes the format of ddmmyy, and uniquely identifies each indivual PSG recording on each individual.  Each 30 second epoch will be scored as (i) wake, (ii) N1, (iii) N2, (iv) N3, (v) REM and comparsons between scorers or devices made using comparisons described in this R-project.  Sleep parameters derived in Miniview will be extracted  
+
+
+| Directory | Description |
+|-----------|-------------|
+| `Z:/psg/Data/studyID` | Contains all miniview output (total measurement, efg, report and sleep stage pdf files) for each studyID |
+| `Z:/psg/Analysis/Sleep_metrics` | Contains sleep parameters extracted from miniview report |
+| `Z:/psg/Analysis/Sleep_scores` | Contains sleep scores for each studyID |
+
+<br>  
    
 ### Dim Light Melatonin Onset (DMLO)  
 The time of DLMO will be measured according to this [protocol](datasheets/DMLO_protocol.md). Time series data describing salivary melatonin concentrations will be stored as csv files for each participant in the following folder, Z:\DMLO\time_series) and derived times of DLMO will be stored in a csv file here, Z:\DMLO\results)
@@ -139,45 +148,44 @@ Ambient_BD
 │   ├── Readme.txt
 |   |
 │   ├── MEQ
-│   │   ├── raw
+│   │   ├── 
 │   │   ├── analysis
-│   │   └── code
+│   │   └── key
 │   │
 │   ├── ISI
-│   │   ├── raw
+│   │   ├── 
 │   │   ├── analysis
-│   │   └── code
+│   │   └── key
 │   │
 │   ├── Demo
-│   │   ├── raw
+│   │   ├── 
 │   │   ├── analysis
-│   │   └── code
+│   │   └── key
 │   │
 │   └── Stopbang
-│   │   ├── raw
-│   │   ├── analysis
-│   │   └── code
-│   │ 
-│   └── Stopbang
-│       ├── raw
+│       ├── 
 │       ├── analysis
-│       └── code
-│    
+│       └── key
+│
+├── Sleep_Diaries
+│   │
+│   ├── Readme.txt
+|   |
+│   ├── Analysis
+|   |
+│   └── Key
 │   
 ├── Accelerometry
 │   │
 │   ├── Readme.txt
 │   │
-│   ├── Sleep
-│   │   ├── raw
-│   │   ├── analysis
-│   │   └── code
-│   │   │
-│   └── Circadian Rhythms
-│       ├── raw
-│       ├── analysis
-│       └── code
-│
+│   ├── cwa
+│   │
+│   └── Results
+│       ├── csv
+│       ├── ggir_output
+│       └── ggir_variables
+│   
 └── Radar
     │
     ├── Readme.txt
