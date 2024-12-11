@@ -5,12 +5,24 @@
 <br>  
 <br> 
 
-# Ambient-BD Work Package 1 - Data Management Plan
+	
+# Work Package 1 - Data Management Plan  
+<br>  
+<br>  
+
 
 Bipolar disorder is defined by extreme variability in mood, activity, sleep and circadian timing recurring over weeks and months. To date, studies of sleep/circadian rhythms in bipolar disorder
 have been cross-sectional and based on only 1-2 weeks of monitoring: we urgently need new approaches that can assess longer-term individual-level changes in sleep, activity and mood, to
 better understand symptom trajectories and mechanisms of relapse. In Ambient-BD, we will optimize innovative ambient and passive data collection methods over long time periods and test their feasibility and
-performance against gold standards. 
+performance against gold standards.  
+
+The aims of Work Package 1 (Acceptability, feasibility and validity of novel ambient and passive data collection methods for sleep, circadian rhythmicity and light exposure) are:
+* to test the performance of novel radar sleep sensors against the gold standard methods for assessing sleep and circadian rhythms, polysomnography and dim light melatonin onset
+* to generate a longitudinal dataset of radar sensing and sleep data that can be used to optimse methods for assessing varibaility in sleep time series data
+  
+
+## Study Design
+
 
 ## Methodological Information  
 
