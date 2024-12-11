@@ -1,0 +1,418 @@
+
+
+```{r setup, include=FALSE}
+###############################
+# enter study ID and dir            
+
+studyID <- c("abd2201_screen")  
+
+# define the working folder
+base_path <- "Z:/Polysomnography/Data/"
+full_path <- paste0(base_path, substr(studyID,1,7))
+#setwd(full_path)
+
+# this script needs the following files if studyID=abd1228:
+# "Z:/Images/Questionnaire_header_long.jpg"
+# "Z:/Polysomnography/Data/abd1228/abd1228_n1.pdf"
+# "Z:/Polysomnography/Data/abd1228/abd1228_n2.pdf"
+# "Z:/Polysomnography/Data/abd1228/abd1228_n3.pdf"
+# "Z:/Polysomnography/Data/abd1228/abd1228_rem.pdf"
+# "Z:/Polysomnography/Data/abd1228/abd1228_wake.pdf"
+# "Z:\\Polysomnography\\Data\\abd1228\\abd1228_hyponogram.png"
+
+
+###############################
+```
+
+
+```{r pack, echo=FALSE, warning=FALSE,  results = 'hide', message=FALSE,  error = FALSE, out.width='100%'}
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+
+#install.packages("magick", quiet = TRUE)
+suppressPackageStartupMessages(library(magick))
+
+#install.packages("pdftools", quiet = TRUE)
+suppressPackageStartupMessages(library(pdftools))
+
+suppressPackageStartupMessages(library(magick))
+#install.packages("magick",quiet = TRUE)
+
+#install.packages("knitr",quiet = TRUE)
+suppressPackageStartupMessages(library(knitr))
+
+#install.packages("kableExtra",quiet = TRUE)
+suppressPackageStartupMessages(library(kableExtra))
+
+#install.packages("odbc",quiet = TRUE)
+suppressPackageStartupMessages(library(odbc))
+
+#install.packages("DBI",quiet = TRUE)
+suppressPackageStartupMessages(library(DBI))
+
+#install.packages("grid",quiet = TRUE)
+suppressPackageStartupMessages(library(grid))
+
+```
+
+
+
+```{r logo, echo=FALSE, warning=FALSE,   message=FALSE,  error = FALSE, out.width='100%'}
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+
+# Define the logo path
+
+logos <- "Z:/Images/Questionnaire_header_long.jpg"
+
+
+# Include the logo image using knitr
+knitr::include_graphics(logos)
+
+```
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<div style="text-align: center;">
+  <h1>Ambient-BD Participant Feedback</h1>
+</div>
+<br>
+<br>
+
+<div style="page-break-after: always;"></div>
+<br>
+<br>  
+
+###  1. PSG Sleep Parameters  
+Polysomnography (PSG) is a sleep study that records physiological signals to determine the phases of sleep and to discriminate the sleep from the waking state.  The table below shows details of the data that was recorded by each group of sensors in your PSG test.
+<br>
+<br>
+
+
+```{r table, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, results='asis'}
+
+# Create a data frame with the terms and descriptions
+sleep_terms <- data.frame(
+  Term = c("EEG (Electroencephalogram)", 
+           "EOG (Electrooculogram)", 
+           "EMG (Electromyogram)", 
+           "Respiratory Parameters"),
+  Description = c("Records brain wave activity to identify different sleep stages, including N1, N2, N3, and REM sleep.",
+                  "Measures eye movements, particularly during REM sleep, to assess the stages of sleep.",
+                  "Records muscle activity from the chin to evaluate muscle tone during sleep.",
+                  "Measurements of airflow, blood oxygen and respiratory effort to detect breathing patterns during sleep.")
+)
+kable(sleep_terms, format = "markdown", col.names = c("Term", "Description"))
+```
+<br>
+
+The data from the PSG sensors were used to calculate information about your sleep duration and quality and your results are shown in the table below.
+<br>
+<br>
+<br>
+```{r sleep_data_table, echo=FALSE}
+
+# Define the path to the Access database
+db_path <- "Z:/Database/tables/abd_research_data_DB_master_010924_be.accdb"
+
+# Establish connection to the Access database
+con <- dbConnect(odbc::odbc(),
+                 .connection_string = paste0("Driver={Microsoft Access Driver (*.mdb, *.accdb)};",
+                                             "DBQ=", db_path, ";"))
+
+# Create the SQL query to retrieve data for the given studyID
+psg_query <- paste0("SELECT SO_latency, TST, sleep_eff_TST_TIB, TIB, AHI_h FROM psg WHERE studyID = '", studyID, "'")
+
+# Execute the query and fetch the data
+psg_result <- dbGetQuery(con, psg_query)
+
+# Check if the query returned any results
+if (nrow(psg_result) == 0) {
+  warning("Query returned no results. Please check the studyID or database connection.")
+  
+  psg_result <- data.frame(SO_latency = NA, TST = NA, sleep_eff_TST_TIB = NA, TIB = NA, AHI_h = NA)  # Add placeholder values
+}
+
+# Extract values from the query result
+SO_latency <- ifelse(!is.null(psg_result$SO_latency) && length(psg_result$SO_latency) > 0, psg_result$SO_latency[1], NA)
+TST <- ifelse(!is.null(psg_result$TST) && length(psg_result$TST) > 0, psg_result$TST[1], NA)
+sleep_eff_TST_TIB <- ifelse(!is.null(psg_result$sleep_eff_TST_TIB) && length(psg_result$sleep_eff_TST_TIB) > 0, psg_result$sleep_eff_TST_TIB[1], NA)
+TIB <- ifelse(!is.null(psg_result$TIB) && length(psg_result$TIB) > 0, psg_result$TIB[1], NA)
+AHI_h <- ifelse(!is.null(psg_result$AHI_h) && length(psg_result$AHI_h) > 0, psg_result$AHI_h[1], NA)
+
+# Close the database connection
+dbDisconnect(con)
+
+# Define the data for the table with the actual values
+sleep_data <- data.frame(
+  Name = c("Sleep Latency", "Total Sleep Time", "Sleep Efficiency", "Total Time in Bed", 
+           "Apnoea per hour"),
+  Description = c("Time (mins) to transition from full wakefulness to sleep", 
+                  "Total duration (mins) of sleep during the PSG", 
+                  "Ratio of total sleep time to the total time spent in bed (%)", 
+                  "Total time (mins) spent in bed during the PSG", 
+                  "Number of sleep apnoea episodes per hour"),
+  `Your data` = c(SO_latency, TST, sleep_eff_TST_TIB, TIB, AHI_h)
+)
+
+# Create the table
+kable(sleep_data, align = c('l', 'l', 'c'), col.names = c("Name", "Description", "Your data"))
+```
+<br>
+<br>
+Sleep is divided into stages based on the types of electical activity in the brain, eye movement and muscle tone.  The pictures in the next few pages show examples of your brain, eye movement and muscle tone in the different sleep stages.  
+<br>
+<br>
+
+<div style="page-break-after: always;"></div>
+
+
+
+
+####   Non-REM Sleep Stage 1 (N1)  
+N1 sleep is the lightest phase of sleep that occurs as you drift off from being awake. During this stage, you are still somewhat aware of your surroundings and are more easily disturbed by sounds or movements.  Your muscles begin to relax (see the EMG), and your eyes may move slowly under your eyelids (see EOG). N1 is a brief stage in the overall sleep cycle and is typically followed by deeper stages of sleep.  In N1, you can see the EEG (brain activity) traces change from the fast brain waves of wakefulness to slower, more mixed-frequency brain waves.  Your N1 brain, eye and muscle activity activity are shown below.
+<br>
+
+```{r n1, echo=FALSE, warning=FALSE, message=FALSE}
+
+# define participant folder that contains sleep stage images
+participant_n1 <- paste0("Z:/Polysomnography/Data/", substr(studyID,1,7), "/", studyID,"_n1.pdf")
+            
+# Suppress messages and capture the output of the pdf_convert function
+output <- capture.output({
+  image_files <- pdftools::pdf_convert(participant_n1, format = "png", dpi = 600)
+})
+
+# Display the first image (which corresponds to the first page of the PDF)
+knitr::include_graphics(image_files[1])  # Display only the first image
+
+```
+<div style="page-break-after: always;"></div>
+
+
+####   Non-REM Sleep Stage 2 (N2)  
+N2 sleep is a deeper phase of sleep than N1 and is characterized by a lack of awareness of your surroundings. During this stage, your body becomes less responsive to external stimuli, making it harder to wake up. Your heart rate and body temperature continue to decrease, and your muscles are more relaxed. In N2, the EEG shows distinct patterns called sleep spindles and K-complexes. Your N2 brain, eye, and muscle activity are shown below.
+<br>
+
+
+```{r n2, echo=FALSE, warning=FALSE, message=FALSE}
+
+# Define the PDF file
+# define participant folder that contains sleep stage images
+participant_n2 <- paste0("Z:/Polysomnography/Data/", substr(studyID,1,7), "/", studyID,"_n2.pdf")
+            
+# Suppress messages and capture the output of the pdf_convert function
+output <- capture.output({
+  image_files <- pdftools::pdf_convert(participant_n2, format = "png", dpi = 600)
+})
+
+# Display the first image (which corresponds to the first page of the PDF)
+knitr::include_graphics(image_files[1])  # Display only the first image
+
+```
+<div style="page-break-after: always;"></div>
+<br>
+
+####   Non-REM Sleep Stage 3 (N3)  
+N3 sleep, also known as slow-wave sleep, is the deepest phase of non-REM sleep and is crucial for restorative processes in the body. During this stage, you are in a state of unconsciousness and have little awareness of your surroundings, making it very difficult to wake up. The brain activity during N3 displays slow "delta" waves, indicating minimal brain activity and deep sleep. Your N3 brain, eye, and muscle activity are shown below.
+<br>
+
+```{r n3, echo=FALSE, warning=FALSE, message=FALSE}
+
+# define participant folder that contains sleep stage images
+participant_n3 <- paste0("Z:/Polysomnography/Data/", substr(studyID,1,7), "/", studyID,"_n3.pdf")
+            
+# Suppress messages and capture the output of the pdf_convert function
+output <- capture.output({
+  image_files <- pdftools::pdf_convert(participant_n3, format = "png", dpi = 600)
+})
+
+# Display the first image (which corresponds to the first page of the PDF)
+knitr::include_graphics(image_files[1])  # Display only the first image
+```
+<div style="page-break-after: always;"></div>
+<br>
+
+####   REM Sleep Stage  
+REM sleep, or Rapid Eye Movement sleep, usually occurs about 90 minutes after falling asleep and can last from 10 to 30 minutes. During REM sleep, your brain is highly active, resembling wakefulness, while your body is temporarily paralyzed to prevent acting out dreams. The EEG during REM shows mixed-frequency brain waves, and your eyes move rapidly under your eyelids. REM sleep is crucial for cognitive functions like memory consolidation and emotional regulation. Your REM brain, eye, and muscle activity are shown below.
+<br>
+
+```{r rem, echo=FALSE, warning=FALSE, message=FALSE}
+
+# define participant folder that contains sleep stage images
+participant_rem <- paste0("Z:/Polysomnography/Data/", substr(studyID,1,7), "/", studyID,"_rem.pdf")
+            
+# Suppress messages and capture the output of the pdf_convert function
+output <- capture.output({
+  image_files <- pdftools::pdf_convert(participant_rem, format = "png", dpi = 600)
+})
+
+# Display the first image (which corresponds to the first page of the PDF)
+knitr::include_graphics(image_files[1])  # Display only the first image
+
+```
+<div style="page-break-after: always;"></div>
+<br>
+
+####   Wake Phase  
+The wake phase is the state of consciousness when you are fully alert. This phase occurs before the onset of sleep and can include various levels of activity and alertness. During wake, your brain exhibits fast, low-amplitude "alpha" waves, reflecting high levels of cognitive activity and awareness. The body is active, with high muscle tone and eye movement.  Your brain, eye, and muscle activity during the wake phase are shown below.
+<br>
+
+```{r wake, echo=FALSE, warning=FALSE, message=FALSE}
+
+# define participant folder that contains sleep stage images
+participant_wake <- paste0("Z:/Polysomnography/Data/", substr(studyID,1,7), "/", studyID,"_wake.pdf")
+            
+# Suppress messages and capture the output of the pdf_convert function
+output <- capture.output({
+  image_files <- pdftools::pdf_convert(participant_wake, format = "png", dpi = 600)
+})
+
+# Display the first image (which corresponds to the first page of the PDF)
+knitr::include_graphics(image_files[1])  # Display only the first image
+```
+
+
+<div style="page-break-after: always;"></div>
+<br>
+<br>
+<br>
+
+
+A hypnogram is a visual chart that shows the different stages of sleep through during the night of PSG testing. The hypnogram shows the stages of sleep - N1, N2, N3, REM, and wake as a series of lines.  Your hyponogram is shown below  
+
+<br>
+
+```{r hypnogram, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, fig.align='center', out.width='100%'}
+
+# Define participant folder that contains sleep stage images
+participant_hypnogram <- paste0("Z:/Polysomnography/Data/", substr(studyID,1,7), "/", studyID, "_hyponogram.png") 
+
+if (!file.exists(participant_hypnogram)) {
+  stop("The PNG file does not exist at the specified path: ", participant_hypnogram)
+}
+
+
+img <- image_read(participant_hypnogram)
+
+# Get dimensions of the original image
+img_info <- image_info(img)
+img_width <- img_info$width
+img_height <- img_info$height
+
+# Calculate new dimensions for cropping
+crop_width <- img_width - 2  # Remove 1 pixel from left and right
+crop_height <- img_height - 21  # Remove 20 pixels from top and 1 from bottom
+
+img_cropped <- image_crop(img, paste0(crop_width, "x", crop_height, "+1+20"))
+
+# Write the resized image to a temporary file
+temp_file <- tempfile(fileext = ".png")
+image_write(img_cropped, temp_file, format = "png")
+
+# Include the resized image in the RMarkdown document
+knitr::include_graphics(temp_file)
+
+
+
+```
+<br>
+
+
+```{r questionnaires, echo=FALSE, warning=FALSE, message=FALSE, error=TRUE}
+
+
+# Define the path to the Access database
+db_path <- "Z:/Database/tables/abd_research_data_DB_master_010924_be.accdb"
+
+# Establish connection to the Access database
+con <- dbConnect(odbc::odbc(),
+                 .connection_string = paste0("Driver={Microsoft Access Driver (*.mdb, *.accdb)};",
+                                             "DBQ=", db_path, ";"))
+
+# Create the SQL query to retrieve data for the given studyID
+ques_query <- paste0("SELECT Chronotype, isi_cat, SB_cat, isi_total, meq_total, SB_total FROM FinalScores WHERE studyID = '", substr(studyID,1,7), "'")
+
+# Execute the query and fetch the data
+ques_result <- dbGetQuery(con, ques_query)
+
+# Check if the query returned any results
+if (nrow(ques_result) == 0) {
+  warning("Query returned no results. Please check the studyID or database connection.")
+} else {
+  # Extract results if available
+  Chronotype <- ques_result$Chronotype
+  isi_cat <- ques_result$isi_cat
+  SB_cat <- ques_result$SB_cat
+  isi_total <- ques_result$isi_total
+  meq_total <- ques_result$meq_total
+  SB_total <- ques_result$SB_total
+}
+
+# Close the database connection
+dbDisconnect(con)
+ 
+
+
+```
+<br>
+<br>
+<div style="page-break-after: always;"></div>
+
+##  2. Questionnaire Results
+
+<br>
+
+####   Chronotype   
+Chronotype is your natural predisposition to be more active during certain times of the day, allowing categorising into "morning types" (larks), "evening types" (owls), or somewhere in between. Morning types tend to wake up early and feel most alert in the morning, while evening types prefer to stay up late and are more active during the night.  The Morning Eveningness Questionnaire you completed assesses your tendency towards morning or evening behaviour.  You scored `r tolower(meq_total)`, which suggests your chronotype is `r tolower(Chronotype)`.
+<br>
+<br>
+<br>
+
+####   Insomnia Severity Index  
+The Insomnia Severity Index is a widely used questionnaire designed to assess the severity of insomnia symptoms and their impact on daily functioning. The ISI consists of a series of questions that evaluate the quality of sleep, sleep disturbances, and the effects of insomnia on daily life over the past two weeks.  Higher scores indicate increased likelihood of insomnia.  You scored `r tolower(isi_total)`  which suggests `r tolower(isi_cat)` 
+<br>
+<br>
+<br>
+  
+####   STOP-BANG Questionnaire    
+The STOP-BANG questionnaire is a screening tool designed to assess the risk of obstructive sleep apnea in individuals. Higher scores indicate a greater risk for OSA. Your STOP-BANG results suggest you are in the category of `r tolower(SB_cat)` 
+<br>
+<br>
+<div style="page-break-after: always;"></div>
+    
+##   3. Axivity Data   
+The Axivity sensor records data about wrist movement that is used to estimate the duration and quality of your sleep over the nights that you participated in the study.  Summaries of the output for each day of data are shown below.
+ 
+```{r axivity, echo=FALSE, warning=FALSE, message=FALSE}
+  
+# Define the base directory, leaving the studyID variable to be inserted
+base_directory <- "Z:/Axivity/Results/ggir_output/output_"
+
+# Build the complete directory path based on the studyID
+directory <- paste0(base_directory, substr(studyID,1,7), "/meta/sleep.qc/")
+
+# List all files in the directory
+all_files <- list.files(directory, full.names = TRUE)
+
+# Search for files that contain "stydyID" anywhere in the filename and have a ".pdf" extension
+pdf_file <- grep(paste0(substr(studyID,1,7), ".*\\.pdf$"), all_files, value = TRUE)
+
+# Check if pdf_file is valid
+if (length(pdf_file) == 0) {
+  stop("No PDF file found for the specified studyID.")
+}
+
+# Suppress messages and capture the output of the pdf_convert function
+output <- capture.output({
+    image_files <- pdftools::pdf_convert(pdf_file, format = "png", dpi = 600)
+  })
+  
+# Display the first image (which corresponds to the first page of the PDF)
+knitr::include_graphics(image_files)  # Display only the first image
+  
+```
+  
+
+
+

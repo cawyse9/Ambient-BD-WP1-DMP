@@ -1,0 +1,1271 @@
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: Refresh_demo                                                                                 Page: 1
+
+
+
+Code
+        1  Attribute VB_Name = "Refresh_demo"
+
+        2  Option Compare Database
+        3
+        4
+
+        5  Public Sub RefreshTableUsingSavedSpecDemo()
+        6      On Error GoTo ErrorHandler
+        7
+
+        8      Dim strFilePath As String
+        9      Dim strSpecName As String
+       10      Dim strDestinationTable As String
+
+       11
+       12      strFilePath = "Z:\Questionnaires\Data\Demography\clyfkuqux0000az6vjajgg9ya-
+           analytics-coded.csv"
+       13      strSpecName = "demo_specs"
+
+       14      strDestinationTable = "demo"
+       15
+       16      DoCmd.RunSQL "DELETE FROM " & strDestinationTable & ";"
+
+       17      DoCmd.TransferText TransferType:=acImportDelim, _
+       18                         SpecificationName:=strSpecName, _
+       19                         TableName:=strDestinationTable, _
+
+       20                         FileName:=strFilePath, _
+       21                         HasFieldNames:=True
+       22
+
+       23      MsgBox "Table refreshed with new data", vbInformation
+       24      Exit Sub
+       25
+
+       26  ErrorHandler:
+       27      MsgBox "Error " & Err.Number & ": " & Err.Description, vbCritical
+       28  End Sub
+
+       29
+       30
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: Refresh_diary                                                                                Page: 2
+
+
+
+Code
+        1  Attribute VB_Name = "Refresh_diary"
+
+        2  Option Compare Database
+        3
+        4
+
+        5  Public Sub RefreshTableUsingSavedSpecDiary()
+        6      On Error GoTo ErrorHandler
+        7
+
+        8      Dim strFilePath As String
+        9      Dim strSpecName As String
+       10      Dim strDestinationTable As String
+
+       11
+       12
+       13      strFilePath = "Z:\Sleep_diaries\Data\cm0e9j6x10006xuxn7guv248d-analytics-
+
+       14      strSpecName = "diary_specs"
+       15      strDestinationTable = "diary"
+       16
+
+       17      DoCmd.RunSQL "DELETE FROM " & strDestinationTable & ";"
+       18      DoCmd.TransferText TransferType:=acImportDelim, _
+       19                         SpecificationName:=strSpecName, _
+
+       20                         TableName:=strDestinationTable, _
+       21                         FileName:=strFilePath, _
+       22                         HasFieldNames:=True
+
+       23
+       24      MsgBox "Table refreshed with new data", vbInformation
+       25      Exit Sub
+
+       26
+       27  ErrorHandler:
+       28      MsgBox "Error " & Err.Number & ": " & Err.Description, vbCritical
+
+       29  End Sub
+       30
+       31
+
+       32
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: Refresh_isi                                                                                  Page: 3
+
+
+
+Code
+        1  Attribute VB_Name = "Refresh_isi"
+
+        2  Option Compare Database
+        3
+        4
+
+        5  Public Sub RefreshTableUsingSavedSpecISI()
+        6      On Error GoTo ErrorHandler
+        7
+
+        8      Dim strFilePath As String
+        9      Dim strSpecName As String
+       10      Dim strDestinationTable As String
+
+       11
+       12      strFilePath = "Z:\Questionnaires\Data\Insomnia Severity
+           Index\clyx0x9jv002uf74dmoq11sux-analytics-coded.csv"
+       13      strSpecName = "isi_specs"
+
+       14      strDestinationTable = "isi"
+       15
+       16      DoCmd.RunSQL "DELETE FROM " & strDestinationTable & ";"
+
+       17      DoCmd.TransferText TransferType:=acImportDelim, _
+       18                         SpecificationName:=strSpecName, _
+       19                         TableName:=strDestinationTable, _
+
+       20                         FileName:=strFilePath, _
+       21                         HasFieldNames:=True
+       22
+
+       23      MsgBox "Table refreshed with new data", vbInformation
+       24      Exit Sub
+       25
+
+       26  ErrorHandler:
+       27      MsgBox "Error " & Err.Number & ": " & Err.Description, vbCritical
+       28  End Sub
+
+       29
+       30
+       31
+
+       32
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: Refresh_meq                                                                                  Page: 4
+
+
+
+Code
+        1  Attribute VB_Name = "Refresh_meq"
+
+        2  Option Compare Database
+        3
+        4
+
+        5
+        6  Public Sub RefreshTableUsingSavedSpecMEQ()
+        7      On Error GoTo ErrorHandler
+
+        8
+        9      Dim strFilePath As String
+       10      Dim strSpecName As String
+
+       11      Dim strDestinationTable As String
+       12
+       13      strFilePath = "Z:\Questionnaires\Data\Morning Eveningness
+           Questionnaire\clyijry5w000613w2uzixzsl5-analytics-coded.csv"
+
+       14      strSpecName = "meq_specs"
+       15      strDestinationTable = "meq"
+       16
+
+       17      DoCmd.RunSQL "DELETE FROM " & strDestinationTable & ";"
+       18      DoCmd.TransferText TransferType:=acImportDelim, _
+       19                         SpecificationName:=strSpecName, _
+
+       20                         TableName:=strDestinationTable, _
+       21                         FileName:=strFilePath, _
+       22                         HasFieldNames:=True
+
+       23
+       24      MsgBox "Table refreshed with new data", vbInformation
+       25      Exit Sub
+
+       26
+       27  ErrorHandler:
+       28      MsgBox "Error " & Err.Number & ": " & Err.Description, vbCritical
+
+       29  End Sub
+       30
+       31
+
+       32
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: Refresh_sb                                                                                   Page: 5
+
+
+
+Code
+        1  Attribute VB_Name = "Refresh_sb"
+
+        2  Option Compare Database
+        3
+        4
+
+        5
+        6  Public Sub RefreshTableUsingSavedSpecSB()
+        7      On Error GoTo ErrorHandler
+
+        8
+        9      Dim strFilePath As String
+       10      Dim strSpecName As String
+
+       11      Dim strDestinationTable As String
+       12
+       13      strFilePath = "Z:\Questionnaires\Data\Stopbang\clyg18t5a0000afyhvlzo2nwz-
+           analytics-coded.csv"
+
+       14      strSpecName = "sb_specs"
+       15      strDestinationTable = "sb"
+       16
+
+       17      DoCmd.RunSQL "DELETE FROM " & strDestinationTable & ";"
+       18      DoCmd.TransferText TransferType:=acImportDelim, _
+       19                         SpecificationName:=strSpecName, _
+
+       20                         TableName:=strDestinationTable, _
+       21                         FileName:=strFilePath, _
+       22                         HasFieldNames:=True
+
+       23
+       24      MsgBox "Table refreshed with new data", vbInformation
+       25      Exit Sub
+
+       26
+       27  ErrorHandler:
+       28      MsgBox "Error " & Err.Number & ": " & Err.Description, vbCritical
+
+       29  End Sub
+       30
+       31
+
+       32
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: SB_with_bmi                                                                                  Page: 6
+
+
+
+Code
+        1  Attribute VB_Name = "SB_with_bmi"
+
+        2  Option Compare Database
+        3
+        4  Sub UpdateStopBangAndSBcat()
+
+        5      Dim db As DAO.Database
+        6      Dim rs As DAO.Recordset
+        7      Dim newScore As Integer
+
+        8      Dim SBcat As String
+        9
+       10      Set db = CurrentDb()
+
+       11      Set rs = db.OpenRecordset("FinalScores", dbOpenDynaset)
+       12
+       13      Do While Not rs.EOF
+
+       14          ' Update StopBangScore based on BMI
+       15          newScore = rs!SB_total + IIf(rs!bmi > 35, 1, 0)
+       16
+
+       17
+       18          ' Determine SB_cat based on the updated StopBangScore with Yes=1, No=2
+           scoring system
+       19      Select Case newScore
+
+       20        Case 5 To 8
+       21          SBcat = "High risk OSA"
+       22        Case 3 To 4
+
+       23          SBcat = "Intermediate risk OSA"
+       24        Case 0 To 2
+       25          SBcat = "Low risk OSA"
+
+       26        Case Else
+       27          SBcat = "error"
+       28      End Select
+
+       29
+       30          ' Update the record
+       31          rs.Edit
+
+       32          rs!SB_cat = SBcat
+       33          rs.Update
+       34
+
+       35          ' Move to the next record
+       36          rs.MoveNext
+       37      Loop
+
+       38
+       39      rs.Close
+       40      Set rs = Nothing
+
+       41      Set db = Nothing
+       42  End Sub
+       43
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: update_sb_with_bmi                                                                           Page: 7
+
+
+
+Code
+        1  Attribute VB_Name = "update_sb_with_bmi"
+
+        2  Option Compare Database
+        3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: updateDemo_mod                                                                               Page: 8
+
+
+
+Code
+        1  Attribute VB_Name = "updateDemo_mod"
+
+        2  Option Compare Database
+        3
+        4  Public Sub updateDemo()
+
+        5      Dim db As DAO.Database
+        6      Dim rsdemo As DAO.Recordset
+        7      Dim rsFinalScores As DAO.Recordset
+
+        8      Dim bmi As Integer
+        9      Dim bmi_cat As String
+       10      Dim ID As String
+
+       11      Dim demo_date As String
+       12
+       13      Set db = CurrentDb()
+
+       14
+       15      ' Open recordset for isi table
+       16      Set rsdemo = db.OpenRecordset("SELECT studyID, demo_gender, demo_height,
+           demo_weight, demo_age, demo_occupation, demo_date, demo_dob FROM demo")
+
+       17
+       18      ' Open recordset for FinalScores table
+       19      Set rsFinalScores = db.OpenRecordset("FinalScores", dbOpenDynaset)
+
+       20
+       21      ' demo data
+       22      rsdemo.MoveFirst
+
+       23
+       24      Do While Not rsdemo.EOF
+       25
+
+       26          ' Calculate the BMI
+       27          If rsdemo!demo_height > 0 Then
+       28              bmi = rsdemo!demo_weight / ((rsdemo!demo_height / 100) ^ 2)
+
+       29          Else
+       30              bmi = 0 ' Handle cases where height is zero or invalid
+       31          End If
+
+       32
+       33          age = rsdemo!demo_age
+       34          occupation = rsdemo!demo_occupation
+
+       35          sex = rsdemo!demo_gender
+       36          dob = rsdemo!demo_dob
+       37          ID = rsdemo!studyID
+
+       38          demo_date = rsdemo!demo_date
+       39
+       40          ' Determine BMI cat based on the score
+
+       41          Select Case bmi
+       42              Case 0 To 18.5
+       43                  bmi_cat = "Underweight"
+
+       44              Case 18.51 To 25
+       45                  bmi_cat = "Healthy Weight"
+       46              Case 25.01 To 30
+
+       47                  bmi_cat = "Overweight"
+       48              Case 30.01 To 100
+       49                  bmi_cat = "Obesity"
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+       50pd            Case Else
+       51                  bmi_cat = "error" ' In case bmi is out of expected range
+       52          End Select
+
+       53
+       54          ' Find if the studyID already exists in FinalScores
+       55          rsFinalScores.FindFirst "studyID = '" & ID & "'"
+
+       56
+       57          If rsFinalScores.NoMatch Then
+       58              ' ID does not exist, add new record
+
+       59              rsFinalScores.AddNew
+       60              rsFinalScores!studyID = ID
+       61              rsFinalScores!age = age
+
+       62              rsFinalScores!bmi = bmi
+       63              rsFinalScores!bmi_cat = bmi_cat
+       64              rsFinalScores!demo_date = demo_date
+
+       65              rsFinalScores!sex = sex
+       66              rsFinalScores!occupation = occupation
+       67              rsFinalScores!dob = dob
+
+       68
+       69              rsFinalScores.Update
+       70          Else
+
+       71              ' Record exists, update the record
+       72              rsFinalScores.Edit
+       73              rsFinalScores!bmi = bmi
+
+       74              rsFinalScores!age = age
+       75              rsFinalScores!bmi_cat = bmi_cat
+       76              rsFinalScores!demo_date = demo_date
+
+       77              rsFinalScores!sex = sex
+       78              rsFinalScores!occupation = occupation
+       79              rsFinalScores!dob = dob
+
+       80              rsFinalScores.Update
+       81
+       82          End If
+
+       83
+       84          rsdemo.MoveNext
+       85      Loop
+
+       86
+       87      ' Close all recordsets
+       88      rsdemo.Close
+
+       89      rsFinalScores.Close
+       90      Set rsbmi = Nothing
+       91      Set rsFinalScores = Nothing
+
+       92      Set db = Nothing
+       93
+       94      MsgBox "Process completed"
+
+       95  End Sub
+       96
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: updateISI_mod                                                                               Page: 10
+
+
+
+Code
+        1  Attribute VB_Name = "updateISI_mod"
+
+        2  Option Compare Database
+        3
+        4  Sub updateISI()
+
+        5      Dim db As DAO.Database
+        6      Dim rsisi As DAO.Recordset
+        7      Dim rsFinalScores As DAO.Recordset
+
+        8      Dim isiTotal As Integer
+        9      Dim isi_cat As String
+       10      Dim ID As String
+
+       11      Dim isiDate As String
+       12
+       13      Set db = CurrentDb()
+
+       14
+       15      ' Open recordset for isi table
+       16      Set rsisi = db.OpenRecordset("SELECT studyID, isi1, isi2, isi3, isi4, isi5, isi6, isi7,
+            isi_date FROM isi")
+
+       17
+       18      ' Open recordset for FinalScores table
+       19      Set rsFinalScores = db.OpenRecordset("FinalScores", dbOpenDynaset)
+
+       20
+       21      ' isi data
+       22      rsisi.MoveFirst
+
+       23
+       24      Do While Not rsisi.EOF
+       25          ' Calculate the total ISI score
+
+       26          isiTotal = rsisi!isi1 + rsisi!isi2 + rsisi!isi3 + rsisi!isi4 + rsisi!isi5 + rsisi!isi6 +
+       27          isiTotal = isiTotal - 7
+       28          ID = rsisi!studyID
+
+       29          isiDate = rsisi!isi_date ' Assuming "date" is a valid field name
+       30
+       31          ' Determine ISI index based on the TotalScore
+
+       32          Select Case isiTotal
+       33              Case 0 To 7
+       34                  isi_cat = "No clinically significant insomnia"
+
+       35              Case 8 To 14
+       36                  isi_cat = "Subthreshold insomnia"
+       37              Case 15 To 21
+
+       38                  isi_cat = "Clinical insomnia (moderate severity)"
+       39              Case 22 To 28
+       40                  isi_cat = "Clinical insomnia (severe)"
+
+       41              Case Else
+       42                  isi_cat = "error" ' In case TotalScore is out of expected range
+       43          End Select
+
+       44
+       45          ' Find if the studyID already exists in FinalScores
+       46          rsFinalScores.FindFirst "studyID = '" & ID & "'"
+
+       47
+       48          If rsFinalScores.NoMatch Then
+       49              ' ID does not exist, add new record
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+       50pd            rsFinalScores.AddNew
+       51              rsFinalScores!studyID = ID
+       52              rsFinalScores!isi_total = isiTotal
+
+       53              rsFinalScores!isi_cat = isi_cat
+       54              rsFinalScores!isi_date = isiDate
+       55              rsFinalScores.Update
+
+       56          Else
+       57              ' Record exists, update the record
+       58              rsFinalScores.Edit
+
+       59              rsFinalScores!isi_total = isiTotal
+       60              rsFinalScores!isi_cat = isi_cat
+       61              rsFinalScores!isi_date = isiDate
+
+       62              rsFinalScores.Update
+       63          End If
+       64
+
+       65          rsisi.MoveNext
+       66      Loop
+       67
+
+       68      ' Close all recordsets
+       69      rsisi.Close
+       70      rsFinalScores.Close
+
+       71      Set rsisi = Nothing
+       72      Set rsFinalScores = Nothing
+       73      Set db = Nothing
+
+       74
+       75      MsgBox "Process completed"
+       76  End Sub
+
+       77
+       78  Sub updateStopbang()
+       79
+
+       80  End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: updateMEQ_mod                                                                               Page: 12
+
+
+
+Code
+        1  Attribute VB_Name = "updateMEQ_mod"
+
+        2  Option Compare Database
+        3  'this encodes the complex scoring of the meq
+        4  Function GetScore(fieldName As String, value As Integer) As Integer
+
+        5      Select Case fieldName
+        6          Case "meq1", "meq2", "meq10", "meq17", "meq18"
+        7              Select Case value
+
+        8                  Case 1: GetScore = 5
+        9                  Case 2: GetScore = 4
+       10                  Case 3: GetScore = 3
+
+       11                  Case 4: GetScore = 2
+       12                  Case 5: GetScore = 1
+       13                  Case Else: GetScore = 9999
+
+       14              End Select
+       15          Case "meq4", "meq5", "meq6", "meq7", "meq14", "meq16"
+       16              Select Case value
+
+       17                  Case 1: GetScore = 1
+       18                  Case 2: GetScore = 2
+       19                  Case 3: GetScore = 3
+
+       20                  Case 4: GetScore = 4
+       21                  Case 5: GetScore = 5
+       22                  Case Else: GetScore = 9999
+
+       23              End Select
+       24          Case "meq8", "meq9", "meq13", "meq15", "meq3"
+       25              Select Case value
+
+       26                  Case 1: GetScore = 4
+       27                  Case 2: GetScore = 3
+       28                  Case 3: GetScore = 2
+
+       29                  Case 4: GetScore = 1
+       30                  Case Else: GetScore = 9999
+       31              End Select
+
+       32          Case "meq11"
+       33              Select Case value
+       34                  Case 1: GetScore = 6
+
+       35                  Case 2: GetScore = 4
+       36                  Case 3: GetScore = 2
+       37                  Case 4: GetScore = 0
+
+       38                  Case Else: GetScore = 9999
+       39              End Select
+       40          Case "meq12"
+
+       41              Select Case value
+       42                  Case 1: GetScore = 0
+       43                  Case 2: GetScore = 2
+
+       44                  Case 3: GetScore = 3
+       45                  Case 4: GetScore = 5
+       46                  Case Else: GetScore = 9999
+
+       47              End Select
+       48          Case "meq19"
+       49              Select Case value
+
+       50                  Case 1: GetScore = 6
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+       51pd                Case 2: GetScore = 4
+       52                  Case 3: GetScore = 2
+       53                  Case 4: GetScore = 1
+
+       54                  Case Else: GetScore = 9999
+       55              End Select
+       56          Case Else
+
+       57              GetScore = 0 ' Default score if field name is not recognized
+       58      End Select
+       59  End Function
+
+       60
+       61  Sub updateMEQ()
+       62      Dim db As DAO.Database
+
+       63      Dim rsMEQ As DAO.Recordset
+       64      Dim rsFinalScores As DAO.Recordset
+       65      Dim chronotypeTotal As Integer
+
+       66      Dim Chronotype As String
+       67      Dim ID As String
+       68      Dim fieldName As String
+
+       69      Dim fieldValue As Integer
+       70      Dim i As Integer
+       71      Dim meq_date As String
+
+       72
+       73      Set db = CurrentDb()
+       74
+
+       75      ' Open recordset for meq table
+       76      Set rsMEQ = db.OpenRecordset("SELECT studyID, meq1, meq2, meq3, meq4,
+           meq5, meq6, meq7, meq8, meq9, meq10, meq11, meq12, meq13, meq14, meq15,
+           meq16, meq17, meq18, meq19, meq_date FROM meq")
+       77
+
+       78      ' Open recordset for questionnaires table
+       79      Set rsFinalScores = db.OpenRecordset("FinalScores", dbOpenDynaset)
+       80
+
+       81      ' Process meq data
+       82      rsMEQ.MoveFirst
+       83
+
+       84      Do While Not rsMEQ.EOF
+       85          chronotypeTotal = 0
+       86          For i = 1 To 19
+
+       87              fieldName = "meq" & i
+       88              fieldValue = rsMEQ.Fields(fieldName).value
+       89
+
+       90              ' Ensure fieldValue is numeric
+       91              If IsNumeric(fieldValue) Then
+       92
+
+       93              'get chronotype score using GetScore function defined abouve
+       94                  chronotypeTotal = chronotypeTotal + GetScore(CStr(fieldName),
+       95              Else
+
+       96                  ' Handle non-numeric values if necessary
+       97                  Debug.Print "Non-numeric value encountered for " & fieldName & ": " &
+       98              End If
+
+       99          Next i
+      100
+      101          ID = rsMEQ!studyID
+
+      102          meq_date = rsMEQ!meq_date
+      103
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+      104pd        ' Determine the chronotype based on the TotalScore
+      105          Select Case chronotypeTotal
+      106              Case 16 To 30
+
+      107                  Chronotype = "Definite Evening"
+      108              Case 31 To 41
+      109                  Chronotype = "Moderate Evening"
+
+      110              Case 42 To 58
+      111                  Chronotype = "Intermediate"
+      112              Case 59 To 69
+
+      113                  Chronotype = "Moderate Morning"
+      114              Case 70 To 86
+      115                  Chronotype = "Definite Morning"
+
+      116              Case Else
+      117                  Chronotype = "error" ' In case TotalScore is out of expected range
+      118          End Select
+
+      119
+      120
+      121          ' Update table with chronotype value
+
+      122          rsFinalScores.FindFirst "studyID = '" & ID & "'"
+      123
+      124          If rsFinalScores.NoMatch Then
+
+      125          ' ID does not exist, add new record
+      126            rsFinalScores.AddNew
+      127            rsFinalScores!studyID = ID
+
+      128            rsFinalScores!Chronotype = Chronotype
+      129            rsFinalScores!meq_total = chronotypeTotal
+      130            rsFinalScores!meq_date = meq_date
+
+      131            rsFinalScores.Update
+      132          Else
+      133            ' Record exists, check if chronotype is already set
+
+      134              If IsNull(rsFinalScores!Chronotype) Then
+      135              ' Chronotype is not set update the record
+      136              rsFinalScores.Edit
+
+      137              rsFinalScores!Chronotype = Chronotype
+      138              rsFinalScores!meq_total = chronotypeTotal
+      139              rsFinalScores!meq_date = meq_date
+
+      140              rsFinalScores.Update
+      141          End If
+      142      End If
+
+      143          rsMEQ.MoveNext
+      144
+      145      Loop
+
+      146
+      147      ' Close all recordsets
+      148      rsMEQ.Close
+
+      149      rsFinalScores.Close
+      150      Set rsMEQ = Nothing
+      151      Set rsFinalScores = Nothing
+
+      152      Set db = Nothing
+      153
+      154      MsgBox "Process completed successfully!"
+
+      155  End Sub
+      156
+      157
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: updateMEQ_mod                                                                               Page: 15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+Module: updateStopbang_mod                                                                          Page: 16
+
+
+
+Code
+        1  Attribute VB_Name = "updateStopbang_mod"
+
+        2  Option Compare Database
+        3
+        4  Sub updateStopbang()
+
+        5      Dim db As DAO.Database
+        6      Dim rsStopBang As DAO.Recordset
+        7      Dim rsFinalScores As DAO.Recordset
+
+        8      Dim stopbangTotal As Integer
+        9      Dim SB_date As String
+       10      Dim ID As String
+
+       11
+       12      Set db = CurrentDb()
+       13
+
+       14      ' Open recordset for stopbang table
+       15      Set rsStopBang = db.OpenRecordset("SELECT studyID, sb1, sb2, sb3, sb4, sb5,
+           sb6, sb7, sb_date FROM sb")
+       16
+
+       17      ' Open recordset for questionnaires table
+       18      Set rsFinalScores = db.OpenRecordset("FinalScores", dbOpenDynaset)
+       19
+
+       20      ' Process stopbang data
+       21      rsStopBang.MoveFirst
+       22      Do While Not rsStopBang.EOF
+
+       23
+       24          ' Convert sb1 to sb7 values: If 2, set to 0 (No), if 1, leave as 1 (Yes)
+       25          rsStopBang.Edit
+
+       26          If rsStopBang!sb1 = 2 Then rsStopBang!sb1 = 0
+       27          If rsStopBang!sb2 = 2 Then rsStopBang!sb2 = 0
+       28          If rsStopBang!sb3 = 2 Then rsStopBang!sb3 = 0
+
+       29          If rsStopBang!sb4 = 2 Then rsStopBang!sb4 = 0
+       30          If rsStopBang!sb5 = 2 Then rsStopBang!sb5 = 0
+       31          If rsStopBang!sb6 = 2 Then rsStopBang!sb6 = 0
+
+       32          If rsStopBang!sb7 = 2 Then rsStopBang!sb7 = 0
+       33          rsStopBang.Update
+       34
+
+       35          ' Calculate stopbang total after conversion
+       36          stopbangTotal = rsStopBang!sb1 + rsStopBang!sb2 + rsStopBang!sb3 +
+           rsStopBang!sb4 + rsStopBang!sb5 + rsStopBang!sb6 + rsStopBang!sb7
+       37
+
+       38          SB_date = rsStopBang!SB_date
+       39          ID = rsStopBang!studyID
+       40
+
+       41          ' Update FinalScores table with new values
+       42          rsFinalScores.FindFirst "studyID = '" & ID & "'"
+       43
+
+       44          If rsFinalScores.NoMatch Then
+       45              ' ID does not exist, add new record
+       46              rsFinalScores.AddNew
+
+       47              rsFinalScores!studyID = ID
+       48              rsFinalScores!SB_total = stopbangTotal
+
+
+C:\Users\Admin\University of Edinburgh\Ambient-BD -                                   Sunday 20 October 2024
+Documents\Workstream 1_Assessing data collection
+methods\1.
+
+       49pd            rsFinalScores!SB_date = SB_date
+       50              rsFinalScores.Update
+       51          Else
+
+       52              ' Record exists, check if stopbang is already set
+       53              If IsNull(rsFinalScores!SB_total) Then
+       54                  ' Stopbang is not set, update the record
+
+       55                  rsFinalScores.Edit
+       56                  rsFinalScores!SB_total = stopbangTotal
+       57                  rsFinalScores!SB_date = SB_date
+
+       58                  rsFinalScores.Update
+       59              End If
+       60          End If
+
+       61
+       62          rsStopBang.MoveNext
+       63      Loop
+
+       64
+       65      ' Close all recordsets
+       66      rsStopBang.Close
+
+       67      rsFinalScores.Close
+       68      Set rsStopBang = Nothing
+       69      Set rsFinalScores = Nothing
+
+       70      Set db = Nothing
+       71
+       72      MsgBox "Process completed successfully!"
+
+       73  End Sub
+       74
