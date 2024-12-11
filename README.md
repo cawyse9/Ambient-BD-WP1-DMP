@@ -22,6 +22,14 @@ The aims of Work Package 1 (Acceptability, feasibility and validity of novel amb
   
 
 ## Study Design
+This work package will be conducted at Maynooth University, Ireland. In 25 healthy controls (and 10 individuals with BD) the performance of Somnofy radar sensors will be evaluated against gold-standards for the assessment of sleep (PSG) and circadian timing
+(actigraphy and DLMO) over three months of continuous actigraphy and radar sensing, incorporating DMLO and PSG over two nights on two separate occasions. Actigraphy, light and temperature will be measured using wrist-worn devices.  Daily hours of sunshine
+and artificial light-at-night will be derived from satellite and weather data.
+
+## Participants
+Participants will be recruited from Maynooth universtiy staff and students, local patient support groups and via our collaborative network in Ireland. Particiipants with BD will be assessed by a clinician using the Structured Clinical Interview for
+DSM-5 (SCID-5) and individuals with BD will only be included if clinically euthymic for at least three months. 
+
 
 
 ## Methodological Information  
