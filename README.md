@@ -150,11 +150,6 @@ Ambient_BD
 │   │   ├── raw
 │   │   ├── analysis
 │   │   └── code
-│   │
-│   └── Stopbang
-│   │   ├── raw
-│   │   ├── analysis
-│   │   └── code
 │   │ 
 │   └── Stopbang
 │       ├── raw
