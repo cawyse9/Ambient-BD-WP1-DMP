@@ -210,7 +210,7 @@ A master database will be created in MS Access that will link to raw data files 
 <br>  
 
 ###  Software  
-All data processing and analysis will be performed in R and MS Access.  Accelerometery, radar and polysomnography sensors will be programmed using software supplied by the manufacturer (Axivity = OMGUI [link], Somnofy = VitalThings (  ) and MiniView (Lowenstein Medical).  Data will be stored locally on a server and backed up to a onedrive location on a weekly basis.  Version control of code files will be maintained with github.
+All data processing and analysis will be performed in R and MS Access.  Accelerometery, radar and polysomnography sensors will be programmed using software supplied by the manufacturer (Axivity = OMGUI, Somnofy = VitalThings and MiniView (Lowenstein Medical).  Data will be stored locally on a server and backed up to a onedrive location on a weekly basis.  Version control of code files will be maintained with github.
 <br>  
 
 ### Data Reuse  
